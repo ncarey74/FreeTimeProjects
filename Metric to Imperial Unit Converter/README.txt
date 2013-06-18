@@ -1,0 +1,1 @@
+This Java program was based off a C++ program I was assigned in my freshman year of college. It can only convert common metric units to common imperial units. The major difference between the Java program and C++ program is the Java program has a GUI made with NetBeans GUI Builder.
