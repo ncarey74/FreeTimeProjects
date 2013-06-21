@@ -1,3 +1,3 @@
-This Java program is an expansion on my previous unit converting program. This one is more powerful, it is able to convert not only metric to imperial, but imperial to imperial, imperial to metric, and metric to metric as well. So now you can convert nearly any measure of length, mass, or volume to another form. Note that I'm using the imperial system, which is slighlty different from the US system. 
+This Java program is an expansion on my previous unit converting program. This one is more powerful, it is able to convert not only metric to imperial, but imperial to imperial, imperial to metric, and metric to metric as well. So now you can convert nearly any measure of length, mass, or volume to another form. Note that I'm using the imperial system, which is slightly different from the US system. 
 
 This version merely lays the groundwork for a proper converting application, so it is incomplete. I have many additions and changes planned for the coming weeks.
