@@ -1,0 +1,5 @@
+This is the 2.1.0 version of my Unit Converter. It can convert many units of measurement to any other applicable unit. It provides two functionalities, the standard unit converter and a new normal time. The standard unit converter functionality converts one unit into another using the key word " to " between two amounts. The normal time functionality turns a large time amount to its running time amount, like "123.5 hours in normal time", which is converted to "5 days, 3 hours, 30 minutes". A help button was also implemented, providing the user with all the information required to operate the program.
+
+Changes from v2.0.1
+-Added the normal time functionality. Converts a large time amount into a running time amount. For example, 121 minutes becomes 2 hours, 1 minute.
+-Added the help button. Describes what the program does, explains the functionalities, and gives input instruction.
