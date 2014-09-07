@@ -15,11 +15,12 @@
     <ClCompile Include="..\UselessNumberMachine\UselessMath.cpp" />
     <ClCompile Include="TestBedMain.cpp" />
     <ClCompile Include="TestNumbersList.cpp" />
+    <ClCompile Include="TestUselessMath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\UselessNumberMachine\NumbersList.h" />
-    <ClInclude Include="..\UselessNumberMachine\UselessMath.h" />
     <ClInclude Include="TestNumbersList.h" />
+    <ClInclude Include="TestUselessMath.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C13B8018-1BE0-41F7-9066-152056291E66}</ProjectGuid>
@@ -57,6 +58,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Users\Carey Norslien\Documents\GitHub\FreeTimeProjects\UselessNumberMachine\UselessNumberMachine</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);DEBUG_FUNC</PreprocessorDefinitions>
+      <AdditionalUsingDirectories>C:\Users\Carey Norslien\Documents\GitHub\FreeTimeProjects\UselessNumberMachine\UselessNumberMachine</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

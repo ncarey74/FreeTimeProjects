@@ -1,8 +1,15 @@
 //---------------------------------------------------------------------
 //
 //---------------------------------------------------------------------
-#ifndef NUMBERSLIST_h
+#ifndef NUMBERSLIST_H
 #define NUMBERSLIST_H
+
+#include <new>
+#include <iostream>
+using std::cout;
+using std::cin;
+using std::nothrow;
+
 
 class NumbersList
 {
@@ -40,7 +47,15 @@ public:
    // Finds the index of the first instance of this number.
    // return: index of first instance of this number, -1 otherwise
    //------------------------------------------------------------------
-   int find(double inNum);
+   int find(double inNum);//TBD
+
+   //------------------------------------------------------------------
+   // Retrieves the element at a given index.
+   // param index: index of element to retrieve.
+   //------------------------------------------------------------------
+   double elementAt(int index);
+
+   int getListSize();
 
    void clearList();
 

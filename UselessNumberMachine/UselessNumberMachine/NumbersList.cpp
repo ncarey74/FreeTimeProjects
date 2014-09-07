@@ -1,10 +1,10 @@
 #include "NumbersList.h"
-#include <new>
-using namespace std;
+
+
 
 NumbersList::NumbersList()
 {
-   numbers = new (nothrow) double[DEFAULT_SIZE];
+   numbers = new (nothrow) double[DEFAULT_SIZE]();
    listLength = DEFAULT_SIZE;
    listSize = 0;
 }
@@ -13,12 +13,12 @@ NumbersList::NumbersList(int size)
 {
    if (size <= DEFAULT_SIZE)
    {
-      numbers = new (nothrow) double[DEFAULT_SIZE];
+      numbers = new (nothrow) double[DEFAULT_SIZE]();
       listLength = DEFAULT_SIZE;
    }
    else
    {
-      numbers = new (nothrow) double[size];
+      numbers = new (nothrow) double[size]();
       listLength = size;
    }
    listSize = 0;
@@ -59,7 +59,18 @@ bool NumbersList::removeFromList(double targetIndex)
          numbers[i] = i + 1;
       }
       listSize--;
+      return true;
    }
+}
+
+double NumbersList::elementAt(int index)
+{
+   return numbers[index];
+}
+
+int NumbersList::getListSize()
+{
+   return listSize;
 }
 
 //The following functions are for debugging purposes only!
@@ -67,7 +78,7 @@ bool NumbersList::removeFromList(double targetIndex)
 #include <iostream>
 void NumbersList::print()
 {
-   for (int i = 0; i < listSize; i++)
+   for (int i = 0; i < listLength; i++)
       cout << numbers[i] << " ";
    cout << "\n";
 }

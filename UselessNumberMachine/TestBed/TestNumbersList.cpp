@@ -1,13 +1,19 @@
 #include "TestNumbersList.h"
-#include <cassert>
-#include <iostream>
-using namespace std;
 
 void TestNumbersList::testUnit()
 {
-   intTestSet();
-   floatTestSet();
-   mixedTestSet();
+   char ch;
+   cout << "Execute TestNumbersList Y/N?\n";
+   cin >> ch;
+   if (ch == 'Y' || ch == 'y')
+   {
+      cout << "***BEGIN TestNumbersList***\n"; 
+      intTestSet();
+      floatTestSet();
+      mixedTestSet();
+      constructTestSet();
+      cout << "***END TestNumbersList***\n"; 
+   }
 }
 
 void TestNumbersList::intTestSet()
@@ -29,11 +35,14 @@ void TestNumbersList::intTestSet()
    testObject.addToList(num3);
    testObject.addToList(num4);
 
+   if (testObject.getListSize() == 3)
+      cout << "getListSize() passes\n";
+   else
+      cout << "getListSize() fails\n";
 
-
-#ifdef DEBUG_FUNC
-   testObject.print();
-#endif
+   for (int i = 0; i < testObject.getListSize(); i++)
+      cout << testObject.elementAt(i) << " ";
+   cout << "\n";
 
    cout << "END: IntegerNumbersListTestSet\nPress c to continue\n\n";
    cin >> ch;
@@ -60,10 +69,14 @@ void TestNumbersList::floatTestSet()
    testObject.addToList(num4);
    testObject.addToList(num5);
 
+   if (testObject.getListSize() == 4)
+      cout << "getListSize() passes\n";
+   else
+      cout << "getListSize() fails\n";
 
-#ifdef DEBUG_FUNC
-   testObject.print();
-#endif
+   for (int i = 0; i < testObject.getListSize(); i++)
+      cout << testObject.elementAt(i) << " ";
+   cout << "\n";
 
    cout << "END: FractionNumbersListTestSet\nPress c to continue\n";
    cin >> ch;
@@ -95,11 +108,36 @@ void TestNumbersList::mixedTestSet()
    testObject.addToList(num6);
    testObject.addToList(num7);
 
+   if (testObject.getListSize() == 6)
+      cout << "getListSize() passes\n";
+   else
+      cout << "getListSize() fails\n";
 
-#ifdef DEBUG_FUNC
-   testObject.print();
-#endif
+   for (int i = 0; i < testObject.getListSize(); i++)
+      cout << testObject.elementAt(i) << " ";
+   cout << "\n";
 
    cout << "END: FractionNumbersListTestSet\nPress c to continue\n";
    cin >> ch;
+}
+
+void TestNumbersList::constructTestSet()
+{
+   NumbersList testObject;
+   NumbersList *pointer = new NumbersList();
+
+   cout << "\nBEGIN: ConstructNumbersListTestSet\n";
+#ifdef DEBUG_FUNC
+   testObject.print();
+   pointer->print();
+#endif
+
+   delete pointer;
+   pointer = new NumbersList(15);
+
+#ifdef DEBUG_FUNC
+   pointer->print();
+#endif
+
+   cout << "\nEND: ConstructNumbersListTestSet\n";
 }

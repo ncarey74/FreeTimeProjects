@@ -27,6 +27,9 @@
     <ClCompile Include="..\UselessNumberMachine\UselessMath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestUselessMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestNumbersList.h">
@@ -35,7 +38,7 @@
     <ClInclude Include="..\UselessNumberMachine\NumbersList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\UselessNumberMachine\UselessMath.h">
+    <ClInclude Include="TestUselessMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

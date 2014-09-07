@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="UselessMath.h">
+    <ClInclude Include="NumbersList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NumbersList.h">
+    <ClInclude Include="UselessMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

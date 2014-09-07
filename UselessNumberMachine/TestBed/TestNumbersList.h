@@ -3,9 +3,13 @@
 // 
 // Author: Carey Norslien
 //---------------------------------------------------------------------
-#include "NumbersList.h"
 #ifndef TESTNUMBERSLIST_h
 #define TESTNUMBERSLIST_h
+#include "NumbersList.h"
+#include <cassert>
+#include <iostream>
+using std::cin;
+using std::cout;
 
 class TestNumbersList
 {
@@ -30,5 +34,10 @@ private:
    //------------------------------------------------------------------
    static void mixedTestSet();
 
+   //------------------------------------------------------------------
+   // TestID: ConstructNumbersListTestSet
+   // Test constructors and destructors.
+   //------------------------------------------------------------------
+   static void constructTestSet();
 };
 #endif
