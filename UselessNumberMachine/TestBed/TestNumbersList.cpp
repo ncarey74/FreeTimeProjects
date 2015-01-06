@@ -7,12 +7,12 @@ void TestNumbersList::testUnit()
    cin >> ch;
    if (ch == 'Y' || ch == 'y')
    {
-      cout << "***BEGIN TestNumbersList***\n"; 
+      cout << "***BEGIN TestNumbersList***\n";
       intTestSet();
       floatTestSet();
       mixedTestSet();
       constructTestSet();
-      cout << "***END TestNumbersList***\n"; 
+      cout << "***END TestNumbersList***\n";
    }
 }
 
@@ -26,7 +26,7 @@ void TestNumbersList::intTestSet()
    num2 = 0;
    num3 = 157;
    num4 = -2998;
-   
+
    cout << "\nBEGIN: IntegerNumbersListTestSet\n";
 
    //Add the numbers to the list w/o crashing
@@ -59,7 +59,7 @@ void TestNumbersList::floatTestSet()
    num3 = 157.22;
    num4 = -2998.456;
    num5 = 0.3;
-   
+
    cout << "\nBEGIN: FractionNumbersListTestSet\n";
 
    //Add the numbers to the list w/o crashing
@@ -96,7 +96,7 @@ void TestNumbersList::mixedTestSet()
    num5 = 0.3;
    num6 = 2;
    num7 = -78;
-   
+
    cout << "\nBEGIN: FractionNumbersListTestSet\n";
 
    //Add the numbers to the list w/o crashing

@@ -1,19 +1,17 @@
-   #include "NumbersList.h"
-namespace useless_math
-{
-   double addition(NumbersList numbers);
+#include "NumbersList.h"
 
-   double subtraction(NumbersList numbers);
+double addition(NumbersList numbers);
 
-   double multiplication(NumbersList numbers);
+double subtraction(NumbersList numbers);
 
-   double division(NumbersList numbers);
+double multiplication(NumbersList numbers);
 
-   double reciprocalAddition(NumbersList numbers);
+double division(NumbersList numbers);
 
-   double reciprocalSubtraction(NumbersList numbers);
+double reciprocalAddition(NumbersList numbers);
 
-   double reciprocalMultiplication(NumbersList numbers);
+double reciprocalSubtraction(NumbersList numbers);
 
-   double reciprocalDivision(NumbersList numbers);
-}
+double reciprocalMultiplication(NumbersList numbers);
+
+double reciprocalDivision(NumbersList numbers);

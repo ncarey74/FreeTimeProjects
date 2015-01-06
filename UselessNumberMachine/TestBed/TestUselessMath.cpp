@@ -2,7 +2,7 @@
 
 void TestUselessMath::testUnit()
 {
-   int test1;
+   double test1;
    char ch;
    test1 = addition(NumbersList());
 
@@ -13,4 +13,3 @@ void TestUselessMath::testUnit()
    cout << "Press any key to do something else\n";
    cin >> ch;
 }
-

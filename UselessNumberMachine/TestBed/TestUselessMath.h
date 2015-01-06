@@ -9,7 +9,7 @@
 #include "NumbersList.h"
 #include "UselessMath.h"
 #include <iostream>
-using namespace useless_math;
+
 using std::cin;
 using std::cout;
 
