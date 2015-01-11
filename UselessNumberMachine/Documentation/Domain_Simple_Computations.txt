@@ -1,0 +1,86 @@
+FUNCTIONS######################################################################
+Addition
+--------
+input: 	Ordered List of Numbers
+output: sum
+pseudocode:
+	while there are numbers left
+		sum += number
+	return sum 
+
+Subtraction
+-----------
+input: 	Ordered List of Numbers
+output: difference
+pseudocode:
+	while there are numbers left
+		difference -= number
+	return difference
+
+Multiplication
+--------------
+input: 	Ordered List of Numbers
+output: product
+pseudocode:
+	while there are numbers left
+		product *= number
+	return product 
+
+Division
+--------
+input: 	Ordered List of Numbers
+output: quotient
+pseudocode:
+	while there are numbers left
+		quotient/= number
+	return quotient
+
+Reciprocal Addition
+-------------------
+input: 	Ordered List of Numbers
+output: reciprocal
+pseudocode:
+	while there are numbers left
+		reciprocal += 1 / number
+	return 1 / reciprocal
+
+Reciprocal Subtraction
+----------------------
+input: 	Ordered List of Numbers
+output: reciprocal
+pseudocode:
+	while there are numbers left
+		reciprocal -= 1 / number
+	return 1 / reciprocal
+
+Reciprocal Multiplication
+-------------------------
+input: 	Ordered List of Numbers
+output: reciprocal
+pseudocode:
+	while there are numbers left
+		reciprocal *= 1 / number
+	return 1 / reciprocal
+
+Reciprocal Division
+-------------------
+input: 	Ordered List of Numbers
+output: reciprocal
+pseudocode:
+	while there are numbers left
+		reciprocal /= 1 / number
+	return 1 / reciprocal
+
+Modulus
+-------
+input:	ordered list of numbers
+output:	modulus result
+	while there are numbers left
+		result %= number
+	return result
+
+DATA STRUCTURES#########################################################################################
+Ordered List of Numbers
+- array same size as List of Numbers DS
+- same elements as List of Numbers DS
+- ascending order

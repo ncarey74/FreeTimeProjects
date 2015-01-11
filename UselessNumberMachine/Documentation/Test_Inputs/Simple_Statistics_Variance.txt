@@ -1,0 +1,11 @@
+Input:	101, -134, 3, 101.0001, 100.9999
+Output:	10662.8341
+
+Input:	-2, -1500
+Output:	1121904.64
+
+Input:	3
+Output:	3
+
+Input:	-3
+Output:	-3

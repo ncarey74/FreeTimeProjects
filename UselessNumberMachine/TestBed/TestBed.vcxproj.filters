@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestUselessMath.h">
+    <ClInclude Include="..\UselessNumberMachine\NumbersList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UselessNumberMachine\UselessMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TestNumbersList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\UselessNumberMachine\NumbersList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\UselessNumberMachine\UselessMath.h">
+    <ClInclude Include="TestUselessMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

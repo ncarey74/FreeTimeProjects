@@ -1,0 +1,75 @@
+ALL STRUCTURES---------------------------------------------------------------------------------------------------
+Output File:
+- dynamically allocated string array
+- size determined once during runtime
+	+ size = 42n + 9, where n is the number of input sets
+- each element corresponds to one line of text in the output file
+- the elements are as follows
+	+ index 0: input begin header
+	+ index 1...n: input sets
+	+ index n + 1: input end header
+	+ index n + 2: output being header
+	+ index n + 3: date and time
+	+ index n + 4: total entries
+	+ index n + 5: total numbers
+	+ index n + 6: successful entries
+	+ index n + 7: unsuccessful entries
+	+ index n + 8: empty slot
+	+ index n + 9...42n + 7: useless number crunching results
+	+ index 42n + 8: output end header
+
+Prime Factors:
+- Uses either a dynamically allocated array or a vector.
+	+ Need to data structure small, but growable.
+	+ Could possibly by fixed if the number with the most factors can be determined withing the data range.
+- Index 0 is the original number
+- Indices 1 and higher are the factors
+	+ Prime factorization algorithm takes care of the order.
+
+All Factors List:
+- Uses dynamically allocated array 
+- Size is (number of elements of largest Prime Factors DS) * (number of Prime Factors DSs)
+- Conceptually a 2D array, implement as 1D array using row major order
+	| 18 2 3 3 |
+	| 24 2 2 3 |	==> | 18 2 3 3 24 2 2 3 |
+- Since Prime Factors DSs can be off different sizes, 0s will be added to keep "shape" of conceptual 2D array
+
+Common Factors:
+- dynamically allocated integer array
+- Contains only factors, not original numbers
+
+Prime Numbers:
+- dynamically allocated integer array
+	+ Need to data structure small, but growable.
+- contains only prime numbers
+- ascending order
+
+Ordered List of Numbers
+- array same size as List of Numbers DS
+- same elements as List of Numbers DS
+- ascending order
+
+List of Numbers
+- dynamically allocated array that is same size as amount of numbers inputted
+
+UNIQUE STRUCTURES-------------------------------------------------------------------------------------------
+Prime Factors List:
+- Uses either a dynamically allocated array or a vector.
+	+ Need to data structure small, but growable.
+	+ Could possibly by fixed if the number with the most factors can be determined withing the data range.
+- Index 0 is the original number
+- Indices 1 and higher are the factors
+	+ Prime factorization algorithm takes care of the order.
+
+All Factors List:
+- Uses dynamically allocated array 
+- Size is (number of elements of largest Prime Factors DS) * (number of Prime Factors DSs)
+- Conceptually a 2D array, implement as 1D array using row major order
+	| 18 2 3 3 |
+	| 24 2 2 3 |	==> | 18 2 3 3 24 2 2 3 |
+- Since Prime Factors DSs can be off different sizes, 0s will be added to keep "shape" of conceptual 2D array
+
+Generic Numbers List:
+! doesn't need to be its own class, but helps from an OO standpoint.
+
+Output File:

@@ -1,10 +1,7 @@
-//---------------------------------------------------------------------
-// Performs useless calculations on all elements a single input entry.
-// Author: Carey Norslien
-//---------------------------------------------------------------------
 #include "UselessMath.h"
 
-double addition(NumbersList numbers)
+//Simple Math----------------------------------------------------------------
+double sum(NumbersList numbers)
 {
    double sum = 0;
 
@@ -14,7 +11,7 @@ double addition(NumbersList numbers)
    return sum;
 }
 
-double subtraction(NumbersList numbers)
+double difference(NumbersList numbers)
 {
    double difference = 0;
 
@@ -24,7 +21,7 @@ double subtraction(NumbersList numbers)
    return difference;
 }
 
-double multiplication(NumbersList numbers)
+double product(NumbersList numbers)
 {
    double product = 0;
 
@@ -34,17 +31,22 @@ double multiplication(NumbersList numbers)
    return product;
 }
 
-double division(NumbersList numbers)
+double quotient(NumbersList numbers)
 {
    double quotient = 0;
 
    for (int i = 0; i < numbers.getListSize(); i++)
-      quotient /= numbers.elementAt(i);
-
+   {
+      //prevent pending divide by zero errors
+      if (numbers.elementAt(i) != 0)
+         quotient /= numbers.elementAt(i);
+      else
+         return 0;
+   }
    return quotient;
 }
 
-double reciprocalAddition(NumbersList numbers)
+double reciprocalSum(NumbersList numbers)
 {
    double reciprocal = 0;
 
@@ -54,7 +56,7 @@ double reciprocalAddition(NumbersList numbers)
    return 1 / reciprocal;
 }
 
-double reciprocalSubtraction(NumbersList numbers)
+double reciprocalDifference(NumbersList numbers)
 {
    double reciprocal = 0;
 
@@ -64,7 +66,7 @@ double reciprocalSubtraction(NumbersList numbers)
    return 1 / reciprocal;
 }
 
-double reciprocalMultiplication(NumbersList numbers)
+double reciprocalProduct(NumbersList numbers)
 {
    double reciprocal = 0;
 
@@ -74,13 +76,18 @@ double reciprocalMultiplication(NumbersList numbers)
    return 1 / reciprocal;
 }
 
-double reciprocalDivision(NumbersList numbers)
+double reciprocalQuotient(NumbersList numbers)
 {
    double reciprocal = 0;
 
    for (int i = 0; i < numbers.getListSize(); i++)
-      reciprocal /= (1 / numbers.elementAt(i));
-
+   {
+      //prevent pending divide by zero error
+      if (numbers.elementAt(i) != 0)
+         reciprocal /= (1 / numbers.elementAt(i));
+      else
+         return 0;
+   }
    return 1 / reciprocal;
 }
 
@@ -94,3 +101,71 @@ double reciprocalDivision(NumbersList numbers)
 //
 //   return result;
 //}
+
+double rollingOperations() 
+{ 
+   return 0;
+}
+
+double modulus()
+{ 
+   return 0;
+}
+
+//Statistics-----------------------------------------------------------------
+double largestNumber() 
+{ 
+   return 0; 
+}
+
+double smallestNumber() 
+{ 
+   return 0;
+}
+
+double averageNumber() 
+{ 
+   return 0;
+}
+
+double medianNumber()
+{ 
+   return 0;
+}
+
+double standardDeviation() 
+{ 
+   return 0;
+}
+
+NumbersList orderByValue() 
+{ 
+   return 0;
+}
+
+//Prime Numbers--------------------------------------------------------------
+NumbersList primeNumber() 
+{ 
+   return 0;
+}
+
+//Exponential Numbers--------------------------------------------------------
+double sqrtSum() 
+{ 
+   return 0;
+}
+
+double sqrtDifference() 
+{ 
+   return 0;
+}
+
+double sqrtProduct() 
+{ 
+   return 0;
+}
+
+double sqrtQuotient() 
+{ 
+   return 0;
+}

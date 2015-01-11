@@ -1,0 +1,11 @@
+TestID: 	IntegerNumbersListTestSet
+Description:	Test object methods with integers.
+
+TestID: 	FractionNumbersListTestSet
+Description:	Test object methods with fractions.
+
+TestID: 	RealNumbersListTestSet
+Description:	Test object methods with real numbers.
+
+TestID: 	ConstructNumbersListTestSet
+Description:	Test constructors and destructors.

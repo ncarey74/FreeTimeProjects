@@ -1,0 +1,139 @@
+FUNCTIONS######################################################################
+Square Root Sum*
+---------------
+input:	list of numbers DS
+output:	square root of the sum
+psuedocode:
+	find sum
+	return sqrt sum
+
+Sum Square Root*
+---------------
+input:	list of numbers DS	
+output:	sum of square roots
+psuedocode:
+	while there are still numbers left
+		sum += sqrt number
+	return sum
+
+Square Root Difference*
+----------------------
+input:	list of numbers DS	
+output:	square root of differences
+psuedocode:
+	find difference
+	return sqrt difference
+
+Difference Square Root*
+----------------------
+input:	list of numbers DS	
+output:	difference of square roots
+psuedocode:
+	while there are still numbers left
+		difference -= sqrt number
+	return difference
+
+Square Root Product*
+-------------------
+input:	list of numbers DS
+output:	square root of products
+psuedocode:
+	find product
+	return sqrt product
+
+Product Square Root*
+-------------------
+input:	list of numbers DS	
+output:	
+psuedocode:
+	while there are still numbers left
+		product *= sqrt number
+	return product 
+
+Square Root Quotient*
+--------------------
+input:	list of numbers DS
+output:	square root of quotient
+psuedocode:
+	find quotient
+	return sqrt quotient
+
+Quotient Square Root*
+--------------------
+input:	list of numbers DS	
+output:	quotient of square roots
+psuedocode:
+	while there are still numbers left
+		quotient /= sqrt number
+	return quotient 
+
+Squared Sum
+---------------
+input:	list of numbers DS
+output:	square of the sum
+psuedocode:
+	find sum
+	return sum * sum
+
+Sum Squared
+---------------
+input:	list of numbers DS	
+output:	sum of square
+psuedocode:
+	while there are still numbers left
+		sum += number * number
+	return sum
+
+Squared Difference
+----------------------
+input:	list of numbers DS	
+output:	square of differences
+psuedocode:
+	find difference
+	return difference * difference
+
+Difference Squared
+----------------------
+input:	list of numbers DS	
+output:	difference of square
+psuedocode:
+	while there are still numbers left
+		difference -= number * number
+	return difference
+
+Squared Product
+-------------------
+input:	list of numbers DS
+output:	square of products
+psuedocode:
+	find product
+	return product * product
+
+Product Squared
+-------------------
+input:	list of numbers DS	
+output:	product squared
+psuedocode:
+	while there are still numbers left
+		product *= number * number
+	return product 
+
+Squared Quotient
+--------------------
+input:	list of numbers DS
+output:	square of quotient
+psuedocode:
+	find quotient
+	return quotient * quotient
+
+Quotient Squared
+--------------------
+input:	list of numbers DS	
+output:	quotient of squares
+psuedocode:
+	while there are still numbers left
+		quotient /= number * number
+	return quotient 
+DATA STRUCTURES################################################################
+NOTES##########################################################################
+*include "math.h"

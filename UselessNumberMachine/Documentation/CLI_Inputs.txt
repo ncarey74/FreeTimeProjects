@@ -1,0 +1,14 @@
+open <file_name.txt>
+! Opens an input file, processes it, and saves it. No further action is necessary. 
+- Input: <file_name.txt>
+- Output: "<file_name.txt> has been uselessly processed."
+
+quit
+! Closes the Useless Number Machine CLI and ends Useless Number Machine Execution
+
+input <string of numbers>
+! Processes string of numbers and outputs the results. No further action is necessary.
+- string of numbers ranges from one to ten numbers
+- numbers are non-zero real numbers
+- numbers are semi-colon(;) separated
+- Output: Results of processing. Format is similar to Output section of input file.

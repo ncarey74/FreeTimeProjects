@@ -1,0 +1,18 @@
+Input:	6
+Output:	6, 2, 3
+
+Input:	9
+Output: 9, 3, 3
+
+Input:	12
+Output:	12, 2, 3, 4, 6
+
+Input:	2
+Output:	2, 2
+
+Input:	3
+Output:	3, 3
+
+Input:	-420
+Output:	-420, 2, 7, 3, 5, -2
+

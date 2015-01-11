@@ -1,7 +1,5 @@
 #include "NumbersList.h"
 
-
-
 NumbersList::NumbersList()
 {
    numbers = new (nothrow) double[DEFAULT_SIZE]();

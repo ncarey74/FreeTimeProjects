@@ -1,0 +1,20 @@
+Input:	6, 12
+Output:	6
+
+Input:	15, 30, 105
+Output:	15
+
+Input:	24, 108
+Output:	12
+
+Input:	11, 13
+Output:	1
+
+Input:	-11, 13
+Output:	N/A
+
+Input:	6.0, 12.0
+Output:	6
+
+Input:	6.01, 12
+Output:	1

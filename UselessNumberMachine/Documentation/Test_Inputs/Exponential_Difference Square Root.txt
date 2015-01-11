@@ -1,0 +1,11 @@
+Input:	2, 3, 5
+Output:	-2.5539
+
+Input: -2, -3, -5
+Output: - 2.5539i
+
+Input:	0.2, 0.3, 0.5
+Output:	-0.8076
+
+Input: -0.2, -0.3, -0.5
+Output: - 0.8076i

@@ -13,8 +13,8 @@ void main()
    char exitKey;
 
    cout << "###BEGIN TESTING###\n\n";
-   TestNumbersList::testUnit();
-   TestUselessMath::testUnit();
+   numbersListTestUnit();
+   uselessMathTestUnit();
    cout << "\n###END TESTING###\n";
    cout << "Press any key to exit the test suite.\n";
    cin >> exitKey;

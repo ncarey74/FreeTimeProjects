@@ -1,0 +1,11 @@
+Input:	100
+Output:	10
+
+Input: -100
+Output: 10i
+
+Input:	1.01
+Output:	1.0050
+
+Input: -1.01
+Output: 1.0050i

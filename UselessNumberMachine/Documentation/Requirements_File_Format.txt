@@ -1,0 +1,124 @@
+- File specifications
+	+ valid files are plain text (.txt) files
+	+ valid files consist of an input section and an output section
+	+ valid files are at least 1 entry and no more than 100 entries
+- Input
+	+ Input section begins with header
+		* header: "INPUT BEGIN##################################" 
+		* this header is always the first line of the file
+	+ Input section ends with footer
+		* footer: "INPUT END####################################" 
+	+ Entry specifications
+		* Each entry consists of non-zero real numbers.
+		* Each entry consists of up to 10 numbers.
+		* Each number ranges from -1,000,000 to +1,000,000(not including zero)
+			! This is to guarantee reasonable efficiency of program execution and manageable file sizes. 
+		* Each number is in base-ten.
+		* Each entry has its elements separated by semi-colons. 
+- Output
+	+ Output section begins with header
+		* header: "OUTPUT BEGIN#################################"
+	+ Output section ends with footer
+		* footer: "OUTPUT END###################################"
+		* this footer is always the last line of the file
+	+ Output specifications
+		* A statistical summary subsection follows the output section header
+		* The results of the useless number crunching
+		* Each entry will have a tag preceding the results
+	+ Statistical Summary section contains the following (in order listed)
+		! Results will have leading zeros. The number of leading zeros depends on how many digits the largest result has.
+		* date and time processing of all entries has ended
+			- tag: "Date and Time: 		<date/time>"
+		* total number of input entries
+			- tag: "Total Entries: 		<result>"
+		* total number of numbers
+			- tag: "Total Numbers: 		<result>"
+		* number of sucessful entries
+			! successful entries contain no errors
+			- tag: "Successful Numbers: 	<result>"
+		* number of unsucessful entries
+			! unsuccessful entries contain one or more errors
+			- tag: "Unsuccessful Numbers:	<result>"
+	+ Useless Number Crunching Results section contains the following (in order listed) for each entry
+		* space between Statistics section and this section
+		* entry number
+			- tag: "Input Set <Entry Number>"
+		* input ordered by value
+			- tag: "Input:	"
+		* Simple Calculations header
+			- tag: "SIMPLE CALCULATIONS**************************"
+		* addition computation
+			- tag: "Sum:				<result>"
+		* subtraction computation
+			- tag: "Difference:			<result>"
+		* multiplication computation
+			- tag: "Product:			<result>"
+		* division computation
+			- tag: "Quotient:			<result>"
+		* modulus 
+			- tag: "Remainder:			<result>"
+		* reciprocal
+			- tag: "Reciprocal:			<result>"
+		* Number Theory Basics header
+			- tag: "NUMBER THEORY BASICS*************************"
+		* prime numbers
+			- tag: "Prime Numbers:			<result>"
+		* Mersenne prime numbers
+			- tag: "Mersenne Prime Numbers:		<result>"
+		* greatest common divisor
+			- tag: "Greatest Common Divisor:	<result>"
+		* least common multiple
+			- tag: "Least Common Multiple:		<result>"
+		* Statistics header
+			- tag: "STATISTICS***********************************"
+		* smallest number
+			- tag: "Smallest Number:		<result>"
+		* largest number
+			- tag: "Largest Number:			<result>"
+		* mean
+			- tag: "Mean:				<result>"
+		* median
+			- tag: "Median:				<result>"
+		* mode
+			- tag: "Mode:				<result>"
+		* variance
+			- tag: "Variance:			<result>"
+		* standard deviation
+			- tag: "Standard Deviation:		<result>"
+		* Exponents header
+			- tag: "EXPONENTS************************************"
+		* exponential
+			- tag: "Exponential:			<result>"
+		* square root of sum
+			- tag: "Square Root of the Sum:		<result>"
+		* sum of square roots
+			- tag: "Sum of Square Roots:		<result>"
+		* square root of difference
+			- tag: "Square Root of the Difference:	<result>"
+		* difference of square roots
+			- tag: "Difference of Square Roots:	<result>"
+		* square root of product
+			- tag: "Square Root of the Product:	<result>"
+		* product of square roots
+			- tag: "Product of Square Roots:	<result>"
+		* square root of quotient
+			- tag: "Square Root of the Quotient:	<result>"
+		* quotient of square roots
+			- tag: "Quotient of Square Roots:	<result>"
+		* (sum of input)^2
+			- tag: "Sum Squared:			<result>"
+		* sum of (input^2)
+			- tag: "Sum of Squares:			<result>"
+		* (difference of input)^2
+			- tag: "Difference Squared:		<result>"
+		* difference of (input^2)
+			- tag: "Difference of Squares:		<result>"
+		* (product of input)^2
+			- tag: "Product Squared:		<result>"
+		* product of (input^2)
+			- tag: "Product of Squares:		<result>" 
+		* (quotient of input)^2
+			- tag: "Quotient Squared:		<result>"
+		* quotient of (input^2)
+			- tag: "Quotient of Squares:		<result>"
+		* A space between this input set and the following input set if this set is not the last set.

@@ -1,0 +1,14 @@
+Input:	3, 5
+Output:	15
+
+Input:	4, 6, 8
+Output:	24
+
+Input:	3.0, 5.0
+Output:	15
+
+Input:	3.01, 5
+Output:	1
+
+Input:	-8, 20
+Output:	40

@@ -1,0 +1,93 @@
+INPUT BEGIN##################################
+5.7; 8.1; 3
+9; 4; 5; 13; 114; 28; 999; 1; -2; 10
+INPUT END####################################
+OUTPUT BEGIN#################################
+Date and Time: 		08/06/2014 1:27 PM
+Total Entries: 		02
+Total Numbers: 		13
+Successful Numbers: 	01
+Unsuccessful Numbers: 	01
+
+Input Set 1
+Input:	5.7; 8.1; 3
+SIMPLE CALCULATIONS**************************
+Sum:				<result>
+Difference:			<result>
+Product:			<result>
+Quotient:			<result>
+Remainder:			<result>
+Reciprocal:			<result>
+NUMBER THEORY BASICS*************************
+Prime Numbers:			<result>
+Mersenne Prime Numbers:		<result>
+Greatest Common Divisor:	<result>
+Least Common Multiple:		<result>
+STATISTICS***********************************
+Smallest Number:		<result>
+Largest Number:			<result>
+Mean:				<result>
+Median:				<result>
+Mode:				<result>
+Variance:			<result>
+Standard Deviation:		<result>
+EXPONENTS************************************
+Exponential:			<result>
+Square Root of the Sum:		<result>
+Sum of Square Roots:		<result>
+Square Root of the Difference:	<result>
+Difference of Square Roots:	<result>
+Square Root of the Product:	<result>
+Product of Square Roots:	<result>
+Square Root of the Quotient:	<result>
+Quotient of Square Roots:	<result>
+Sum Squared:			<result>
+Sum of Squares:			<result>
+Difference Squared:		<result>
+Difference of Squares:		<result>
+Product Squared:		<result>
+Product of Squares:		<result>
+Quotient Squared:		<result>
+Quotient of Squares:		<result>
+
+Input Set 2
+Input:	9; 4; 5; 13; 114; 28; 999; 1; -2; 10
+SIMPLE CALCULATIONS**************************
+Sum:				<result>
+Difference:			<result>
+Product:			<result>
+Quotient:			<result>
+Remainder:			<result>
+Reciprocal:			<result>
+NUMBER THEORY BASICS*************************
+Prime Numbers:			<result>
+Mersenne Prime Numbers:		<result>
+Greatest Common Divisor:	<result>
+Least Common Multiple:		<result>
+STATISTICS***********************************
+Smallest Number:		<result>
+Largest Number:			<result>
+Mean:				<result>
+Median:				<result>
+Mode:				<result>
+Variance:			<result>
+Standard Deviation:		<result>
+EXPONENTS************************************
+Exponential:			<result>
+Square Root of the Sum:		<result>
+Sum of Square Roots:		<result>
+Square Root of the Difference:	<result>
+Difference of Square Roots:	<result>
+Square Root of the Product:	<result>
+Product of Square Roots:	<result>
+Square Root of the Quotient:	<result>
+Quotient of Square Roots:	<result>
+Sum Squared:			<result>
+Sum of Squares:			<result>
+Difference Squared:		<result>
+Difference of Squares:		<result>
+Product Squared:		<result>
+Product of Squares:		<result>
+Quotient Squared:		<result>
+Quotient of Squares:		<result>
+OUTPUT END###################################

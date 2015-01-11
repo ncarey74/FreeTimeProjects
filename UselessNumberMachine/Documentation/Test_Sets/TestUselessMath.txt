@@ -1,0 +1,18 @@
+TestID: 	EmptyNumbersListTestSet
+Description:	Test all functions with an emtpy numbers list.
+
+TestID: 	SumTestSet
+Description:	For several number lists of the same size, sum up
+		all values.
+
+TestID: 	DifferenceTestSet
+Description:	For several number lists of the same size, subtract
+		all values.
+
+TestID: 	ProductTestSet
+Description:	For several number lists of the same size, multiply
+		all values.
+
+TestID: 	QuotientTestSet
+Description:	For several number lists of the same size, divide
+		all values. Also check for divide by zero errors.

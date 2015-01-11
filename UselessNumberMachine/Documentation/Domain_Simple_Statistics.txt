@@ -1,0 +1,90 @@
+FUNCTIONS###############################################################################
+Order by Value
+--------------
+input:	list of numbers DS
+output:	ordered list of numbers DS
+psuedocode:
+	for int i = 0, i < n - 1, i++
+		min = i
+		for int j = i + 1, j < n, j++
+			if element j < element min
+				min = j
+		temp = element i
+		element i = element temp
+		element min = temp
+
+Largest Number
+--------------
+input:	list of numbers DS
+output:	largest number
+psuedocode:
+	return last element of list of numbers DS
+
+Smallest Number
+---------------
+input:	list of numbers DS
+output:	smallest number
+psuedocode:
+	return first element of list of numbers DS
+
+Mean
+----
+input:	list of numbers DS
+output:	mean
+psuedocode:
+	return sum of ordered list of numbers DS / size of list of numbers DS
+
+Median
+------
+input:	Ordered List of Numbers DS
+output:	median
+psuedocode:
+	if n is odd
+		return element (n + 1) / 2
+	else
+		return ((element n / 2) + (element (n / 2) + 1)) / 2
+
+Mode
+----
+input:	Ordered List of Numbers
+output:	mode
+psuedocode:
+	mode = 0
+	mode count = 0
+	mode candidate = mode
+	mode candidate count = mode count
+	for int i = 1, i < size of Ordered List of Numbers, i++
+		if element i = element mode candidate
+			mode candidate count ++
+		else
+			element mode candidate = element i
+		if mode candidate count > mode count
+			element mode = element mode candidate
+			mode count = mode candidate count
+	if element mode candidate != element mode
+		element mode = element mode candidate
+	return mode
+
+Variance
+--------
+input:	list of numbers
+output:	variance
+	while there are still numbers
+		sum += (number - mean) * (number - X Bar)
+	return sum / (size - 1)
+
+Standard Deviation
+------------------
+input:	variance
+output:	standard deviation
+psuedocode:
+	return sqrt(Variance)	
+
+DATA STRUCTURES#################################################################################
+List of Numbers
+- dynamically allocated array that is same size as amount of numbers inputted
+
+Ordered List of Numbers
+- array same size as List of Numbers DS
+- same elements as List of Numbers DS
+- ascending order

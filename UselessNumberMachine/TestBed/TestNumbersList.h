@@ -12,33 +12,33 @@
 using std::cin;
 using std::cout;
 
-class TestNumbersList
-{
-public:
-   static void testUnit();
-private:
-   //------------------------------------------------------------------
-   // TestID: IntegerNumbersListTestSet
-   // Test object methods with integers.
-   //------------------------------------------------------------------
-   static void intTestSet();
+//------------------------------------------------------------------
+// Executive test function for NumbersList
+//------------------------------------------------------------------
+void numbersListTestUnit();
 
-   //------------------------------------------------------------------
-   // TestID: FractionNumbersListTestSet
-   // Test object methods with fractions.
-   //------------------------------------------------------------------
-   static void floatTestSet();
+//------------------------------------------------------------------
+// TestID: IntegerNumbersListTestSet
+// Test object methods with integers.
+//------------------------------------------------------------------
+void intTestSet();
 
-   //------------------------------------------------------------------
-   // TestID: RealNumbersListTestSet
-   // Test object methods with real numbers.
-   //------------------------------------------------------------------
-   static void mixedTestSet();
+//------------------------------------------------------------------
+// TestID: FractionNumbersListTestSet
+// Test object methods with fractions.
+//------------------------------------------------------------------
+void floatTestSet();
 
-   //------------------------------------------------------------------
-   // TestID: ConstructNumbersListTestSet
-   // Test constructors and destructors.
-   //------------------------------------------------------------------
-   static void constructTestSet();
-};
+//------------------------------------------------------------------
+// TestID: RealNumbersListTestSet
+// Test object methods with real numbers.
+//------------------------------------------------------------------
+void mixedTestSet();
+
+//------------------------------------------------------------------
+// TestID: ConstructNumbersListTestSet
+// Test constructors and destructors.
+//------------------------------------------------------------------
+void constructTestSet();
+
 #endif
