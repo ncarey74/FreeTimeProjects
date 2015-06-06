@@ -1,6 +1,7 @@
 //###########################################################################
 // Simple Math Program Main
-// FILE DESC HERE
+// A simple console calculator designed for the Windows environment, thus 
+// VC++ data types are used instead of the regular C++ data types
 // 
 // Software Interface Specifications:
 //    IN:         N/A
@@ -8,7 +9,7 @@
 //
 // Author:        Carey Norslien
 // Created:       06/05/2015
-// Last Modified: 06/05/2015
+// Last Modified: 06/06/2015
 //###########################################################################
 
 //**FILE INCLUDES************************************************************
@@ -37,8 +38,8 @@ enum Errors
 //**FILE DATA****************************************************************
 struct t_userInput
 {
-    int number1;
-    int number2;
+    __int32 number1;
+    __int32 number2;
 } g_userData;
 
 struct t_argumentErrors
@@ -51,9 +52,9 @@ struct t_argumentErrors
 struct t_dataBoundErrors 
 {
     bool dataRangeHi        = false;    //exceeds VC++ int upper limit
-    long dataRangeHiVal     = 0;
+    __int64 dataRangeHiVal     = 0;
     bool dataRangeLo        = false;    //exceeds VC++ int lower limit
-    long dataRangeLoVal     = 0;
+    __int64 dataRangeLoVal = 0;
     bool dataRange          = false;    //exceeds 64 bits
 } g_operandsDataBoundError, g_answerDataBoundError;
 
@@ -129,12 +130,12 @@ void printErrorReport()
     if (g_operandsDataBoundError.dataRangeHi)
     {
         std::cout << "\nNumber: " << g_operandsDataBoundError.dataRangeHiVal
-            << "is too large.\n";
+            << " is too large.\n";
     }
     if (g_operandsDataBoundError.dataRangeLo)
     {
         std::cout << "\nNumber: " << g_operandsDataBoundError.dataRangeLoVal
-            << "is too small.\n";
+            << " is too small.\n";
     }
     if (g_answerDataBoundError.dataRangeHi)
     {
@@ -152,15 +153,17 @@ void printErrorReport()
 
 int parseCommands(int argc, char* argv[])
 {
-    int isReadSuccessful = e_ERR_PARSE_CMD;
+    int isReadSuccessful = e_ERR_NONE;
 
     if (argc < CMD_LENGTH)
     {
         g_argumentErrors.argumentCountLo = true;
+        isReadSuccessful = e_ERR_PARSE_CMD;
     }
     else if (argc > CMD_LENGTH)
     {
         g_argumentErrors.argumentCountHi = true;
+        isReadSuccessful = e_ERR_PARSE_CMD;
     }
     else
     {
@@ -168,6 +171,8 @@ int parseCommands(int argc, char* argv[])
         {
             g_userData.number1 = parseData(argv[2], isReadSuccessful);
             g_userData.number2 = parseData(argv[3], isReadSuccessful);
+            /* see parseData() documentation for the justification of the 
+               following if test. */
             if ((g_userData.number1 != SAFE_DATA && g_userData.number2 != SAFE_DATA) ||
                  isReadSuccessful != e_ERR_DATA_RANGE)
             {
@@ -183,33 +188,39 @@ int parseCommands(int argc, char* argv[])
 //TODO: typechecking
 int parseData(const char* data, int& error)
 {
-    error = e_ERR_DATA_RANGE;
-    long operand = strtol(data, NULL, 10);
+    //long long is 64 bit signed number
+    _int64 operand = strtoll(data, NULL, 10);
 
-    if (errno == ERANGE)
+    if (error == e_ERR_NONE)
     {
-        g_operandsDataBoundError.dataRange = true;
-    }
-    else if (operand > MAX_INT)
-    {
-        g_operandsDataBoundError.dataRangeHi = true;
-        g_operandsDataBoundError.dataRangeHiVal = operand;
-    }
-    else if (operand < MIN_INT)
-    {
-        
-        g_operandsDataBoundError.dataRangeLo = true;
-        g_operandsDataBoundError.dataRangeLoVal = operand;
-    }
-    else
-    {
-        error = e_ERR_NONE;
-    }
+        if (errno == ERANGE)
+        {
+            g_operandsDataBoundError.dataRange = true;
+            error = e_ERR_DATA_RANGE;
+        }
+        else if (operand > MAX_INT)
+        {
+            g_operandsDataBoundError.dataRangeHi = true;
+            g_operandsDataBoundError.dataRangeHiVal = operand;
+            error = e_ERR_DATA_RANGE;
+        }
+        else if (operand < MIN_INT)
+        {
 
-    if (g_operandsDataBoundError.dataRange || g_operandsDataBoundError.dataRangeHi ||
-        g_operandsDataBoundError.dataRangeLo)
-    {
-        operand = SAFE_DATA;
+            g_operandsDataBoundError.dataRangeLo = true;
+            g_operandsDataBoundError.dataRangeLoVal = operand;
+            error = e_ERR_DATA_RANGE;
+        }
+        else
+        {
+            error = e_ERR_NONE;
+        }
+
+        if (g_operandsDataBoundError.dataRange || g_operandsDataBoundError.dataRangeHi ||
+            g_operandsDataBoundError.dataRangeLo)
+        {
+            operand = SAFE_DATA;
+        }
     }
 
     return operand;
