@@ -111,10 +111,7 @@ void main(int argc, char* argv[])
     {
         addition(g_userData.number1, g_userData.number2);
     }
-    else
-    {
-        printErrorReport();
-    }
+    printErrorReport();
 }
 
 void printErrorReport()
@@ -223,16 +220,13 @@ int parseData(const char* data, int& error)
         }
     }
 
-    return operand;
+    return (__int32)operand;
 }
 
 
 bool addition(int num1, int num2)
 {
     bool isInRange = true;
-    int result = 0;
-
-    result = num1 + num2;
 
     if ((num2 > 0) && (num1 > (MAX_INT - num2)))
     {
@@ -244,7 +238,7 @@ bool addition(int num1, int num2)
     }
     else
     {
-        std::cout << "\nSum: " << result << "\n";
+        std::cout << "\nSum: " << num1 + num2 << "\n";
         isInRange = true;
     }
 
