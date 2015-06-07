@@ -24,12 +24,6 @@
 //**FILE CONSTANTS***********************************************************
 const int   CMD_LENGTH          = 4u;
 
-const int   MAX_INT             = LONG_MAX; //"redefine" macro for Visual C++ limits
-const int   MIN_INT             = LONG_MIN; //"redefine" macro for Visual C++ limits
-
-const int   SAFE_DATA           = 0;        //when used in conjuction with another condition,
-                                            //  it can replace erroneous data
-
 //**CUSTOM TYPES*************************************************************
 enum Errors
 {
@@ -187,67 +181,4 @@ int parseCommands(int argc, char* argv[])
     }
 
     return isReadSuccessful;
-}
-
-//WARNING: assumes arguments are integers
-//TODO: typechecking
-int parseData(const char* data, int& error)
-{
-    //long long is 64 bit signed number
-    _int64 operand = strtoll(data, NULL, 10);
-
-    if (error == e_ERR_NONE)
-    {
-        if (errno == ERANGE)
-        {
-            g_operandsDataBoundError.dataRange = true;
-            error = e_ERR_DATA_RANGE;
-        }
-        else if (operand > MAX_INT)
-        {
-            g_operandsDataBoundError.dataRangeHi = true;
-            g_operandsDataBoundError.dataRangeHiVal = operand;
-            error = e_ERR_DATA_RANGE;
-        }
-        else if (operand < MIN_INT)
-        {
-
-            g_operandsDataBoundError.dataRangeLo = true;
-            g_operandsDataBoundError.dataRangeLoVal = operand;
-            error = e_ERR_DATA_RANGE;
-        }
-        else
-        {
-            error = e_ERR_NONE;
-        }
-
-        if (g_operandsDataBoundError.dataRange || g_operandsDataBoundError.dataRangeHi ||
-            g_operandsDataBoundError.dataRangeLo)
-        {
-            operand = SAFE_DATA;
-        }
-    }
-
-    return (__int32)operand;
-}
-
-bool addition(int num1, int num2)
-{
-    bool isInRange = true;
-
-    if ((num2 > 0) && (num1 > (MAX_INT - num2)))
-    {
-        g_answerDataBoundError.dataRangeHi = true;
-    }
-    else if ((num2 < 0) && (num1 < (MIN_INT - num2)))
-    {
-        g_answerDataBoundError.dataRangeLo = true;
-    }
-    else
-    {
-        std::cout << "\nSum: " << num1 + num2 << "\n";
-        isInRange = true;
-    }
-
-    return isInRange;
 }
