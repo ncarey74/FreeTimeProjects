@@ -18,22 +18,58 @@
 //**PUBLIC FUNCTION DEFINITIONS**********************************************
 SMaP_Number::SMaP_Number()
 {
-    dataRangeHi     = false;
-    dataRangeHiVal  = 0;
-    dataRangeLo     = false;
-    dataRangeLoVal  = 0;
-    dataRange       = false;
-    val             = 0;
+    dataRangeHi         = false;
+    dataRangeHiVal      = 0;
+    dataRangeLo         = false;
+    dataRangeLoVal      = 0;
+    exceedAbsoluteLimit = false;
+    val                 = 0;
 }
 
-SMaP_Number::SMaP_Number(int inNum)
+SMaP_Number::SMaP_Number(__int32 inNum)
 {
-    dataRangeHi     = false;
-    dataRangeHiVal  = 0;
-    dataRangeLo     = false;
-    dataRangeLoVal  = 0;
-    dataRange       = false;
-    val             = inNum;
+    dataRangeHi         = false;
+    dataRangeHiVal      = 0;
+    dataRangeLo         = false;
+    dataRangeLoVal      = 0;
+    exceedAbsoluteLimit = false;
+    val                 = inNum;
+}
+
+SMaP_Number::SMaP_Number(char *inText)
+{
+    //long long is 64 bit signed number
+    _int64 operand = strtoll(inText, NULL, CONVERSION_BASE);
+
+    if (errno == ERANGE)
+    {
+        exceedAbsoluteLimit = true;
+    }
+    else if (operand > MAX_INT)
+    {
+        dataRangeHi = true;
+        dataRangeHiVal = operand;
+    }
+    else if (operand < MIN_INT)
+    {
+        dataRangeLo = true;
+        dataRangeLoVal = operand;
+    }
+    else
+    {
+        dataRangeHi = false;
+        dataRangeHiVal = 0;
+        dataRangeLo = false;
+        dataRangeLoVal = 0;
+        exceedAbsoluteLimit = false;
+    }
+
+    if (exceedAbsoluteLimit || dataRangeHi || dataRangeLo)
+    {
+        operand = SAFE_DATA;
+    }
+
+    val = (__int32)operand;
 }
 
 SMaP_Number& SMaP_Number::operator=(const SMaP_Number &rhs)
@@ -44,7 +80,7 @@ SMaP_Number& SMaP_Number::operator=(const SMaP_Number &rhs)
         dataRangeHiVal  = rhs.dataRangeHiVal;
         dataRangeLo     = rhs.dataRangeLo;
         dataRangeLoVal  = rhs.dataRangeLoVal;
-        dataRange       = rhs.dataRange;
+        exceedAbsoluteLimit       = rhs.exceedAbsoluteLimit;
         val             = rhs.val;
     }
     return *this;
@@ -67,6 +103,41 @@ SMaP_Number operator+(const SMaP_Number &lhs, const SMaP_Number &rhs)
     else
     {
         result = SMaP_Number(num1 + num2);
+    }
+
+    return result;
+}
+
+std::ostream& operator<<(std::ostream &out, const SMaP_Number &num)
+{
+    if (!num.dataRangeHi && !num.dataRangeLo && !num.exceedAbsoluteLimit)
+    {
+        out << std::setiosflags(std::ios::left) << std::setw(30)
+            << num.val << " ";
+    }
+    return out;
+}
+
+bool SMaP_Number::isFalsePositive() const
+{
+    bool result = true;
+
+    if (val == SAFE_DATA && 
+        (exceedAbsoluteLimit || dataRangeHi || dataRangeLo))
+    {
+        result = false;
+    }
+
+    return result;
+}
+
+bool SMaP_Number::isInFault() const
+{
+    bool result = false;
+
+    if (exceedAbsoluteLimit || dataRangeHi || dataRangeLo)
+    {
+        result = true;
     }
 
     return result;

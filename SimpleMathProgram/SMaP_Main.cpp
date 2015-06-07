@@ -12,11 +12,14 @@
 // Last Modified: 06/06/2015
 //###########################################################################
 
-//**FILE INCLUDES************************************************************
+//**LIBRARY INCLUDES*********************************************************
 #include    <iostream>
 #include    <string>
 #include    <climits>
 #include    <cerrno>
+
+//**FILE INCLUDES************************************************************
+#include    "SMaP_Number.h"
 
 //**FILE CONSTANTS***********************************************************
 const int   CMD_LENGTH          = 4u;
@@ -38,8 +41,8 @@ enum Errors
 //**FILE DATA****************************************************************
 struct t_userInput
 {
-    __int32 number1;
-    __int32 number2;
+    SMaP_Number number1;
+    SMaP_Number number2;
 } g_userData;
 
 struct t_argumentErrors
@@ -107,11 +110,16 @@ bool addition(int num1, int num2);
 
 void main(int argc, char* argv[])
 {
+    SMaP_Number num = SMaP_Number();
     if (parseCommands(argc, argv) == e_ERR_NONE)
     {
-        addition(g_userData.number1, g_userData.number2);
+        num = g_userData.number1 + g_userData.number2;
+        if (num.isInFault() == false)
+        {
+            std::cout << num << "\n";
+        }
     }
-    printErrorReport();
+    //printErrorReport();
 }
 
 void printErrorReport()
@@ -166,12 +174,12 @@ int parseCommands(int argc, char* argv[])
     {
         if (strcmp(argv[1], "-add") == 0)
         {
-            g_userData.number1 = parseData(argv[2], isReadSuccessful);
-            g_userData.number2 = parseData(argv[3], isReadSuccessful);
-            /* see parseData() documentation for the justification of the 
-               following if test. */
-            if ((g_userData.number1 != SAFE_DATA && g_userData.number2 != SAFE_DATA) ||
-                 isReadSuccessful != e_ERR_DATA_RANGE)
+            g_userData.number1 = SMaP_Number(argv[2]);
+            g_userData.number2 = SMaP_Number(argv[3]);
+            /* see constructor documentation for the justification of the 
+               following IF test. */
+            if ((g_userData.number1).isFalsePositive() || 
+                (g_userData.number2).isFalsePositive())
             {
                 isReadSuccessful = e_ERR_NONE;
             }
@@ -222,7 +230,6 @@ int parseData(const char* data, int& error)
 
     return (__int32)operand;
 }
-
 
 bool addition(int num1, int num2)
 {
