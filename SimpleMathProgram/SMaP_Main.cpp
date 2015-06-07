@@ -15,8 +15,6 @@
 //**LIBRARY INCLUDES*********************************************************
 #include    <iostream>
 #include    <string>
-#include    <climits>
-#include    <cerrno>
 
 //**FILE INCLUDES************************************************************
 #include    "SMaP_Number.h"
@@ -44,17 +42,6 @@ struct t_argumentErrors
     bool argumentCountHi    = false;
     bool argumentCountLo    = false;
 } g_argumentErrors;
-
-//TODO: make a "standard" struct and an "enchanced" struct
-struct t_dataBoundErrors 
-{
-    bool dataRangeHi        = false;    //exceeds VC++ int upper limit
-    __int64 dataRangeHiVal     = 0;
-    bool dataRangeLo        = false;    //exceeds VC++ int lower limit
-    __int64 dataRangeLoVal = 0;
-    bool dataRange          = false;    //exceeds 64 bits
-} g_operandsDataBoundError, g_answerDataBoundError;
-
 
 //**FUNCTION DECLARATIONS****************************************************
 //---------------------------------------------------------------------------
@@ -126,28 +113,28 @@ void printErrorReport()
     {
         std::cout << "\nThere are too few arguments\n";
     }
-    if (g_operandsDataBoundError.dataRangeHi)
-    {
-        std::cout << "\nNumber: " << g_operandsDataBoundError.dataRangeHiVal
-            << " is too large.\n";
-    }
-    if (g_operandsDataBoundError.dataRangeLo)
-    {
-        std::cout << "\nNumber: " << g_operandsDataBoundError.dataRangeLoVal
-            << " is too small.\n";
-    }
-    if (g_answerDataBoundError.dataRangeHi)
-    {
-        std::cout << "\nSum is too large.\n";
-    }
-    if (g_answerDataBoundError.dataRangeLo)
-    {
-        std::cout << "\nSum is too small.\n";
-    }
-    if (g_operandsDataBoundError.dataRange)
-    {
-        perror("The following error has occured");
-    }
+    //if (g_operandsDataBoundError.dataRangeHi)
+    //{
+    //    std::cout << "\nNumber: " << g_operandsDataBoundError.dataRangeHiVal
+    //        << " is too large.\n";
+    //}
+    //if (g_operandsDataBoundError.dataRangeLo)
+    //{
+    //    std::cout << "\nNumber: " << g_operandsDataBoundError.dataRangeLoVal
+    //        << " is too small.\n";
+    //}
+    //if (g_answerDataBoundError.dataRangeHi)
+    //{
+    //    std::cout << "\nSum is too large.\n";
+    //}
+    //if (g_answerDataBoundError.dataRangeLo)
+    //{
+    //    std::cout << "\nSum is too small.\n";
+    //}
+    //if (g_operandsDataBoundError.dataRange)
+    //{
+    //    perror("The following error has occured");
+    //}
 }
 
 int parseCommands(int argc, char* argv[])
