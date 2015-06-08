@@ -1,15 +1,20 @@
 //###########################################################################
-// Simple Math Program Main
+// Simple Math Program Number
 // FILE DESC HERE
 // 
 // Software Interface Specifications:
-//    IN:         N/A
-//    OUT:        N/A
+//      IN:         N/A
+//      OUT:        N/A
+//      IN/OUT:     SMaP_Main. This class is the data abstraction
+//                  for the user entered numbers and the result of the 
+//                  arithmetic operation on those user entered numbers that
+//                  the main files handles.
 //
-// Author:        Carey Norslien
-// Created:       06/06/2015
-// Last Modified: 06/06/2015
+// Author:          Carey Norslien
+// Created:         06/06/2015
+// Last Modified:   06/07/2015
 //###########################################################################
+
 #ifndef     __SMAP_NUMBER_H
 #define     __SMAP_NUMBER_H
 
@@ -19,22 +24,19 @@
 #include    <string>
 #include    <climits>
 #include    <cerrno>
-
-//**FILE INCLUDES************************************************************
 #include    <climits>
+
 
 class SMaP_Number
 {
 public:
-    //const int   SAFE_DATA = 0;  /* when used in conjuction with another condition,
-    //                               it can replace erroneous data*/
-
     // following variables are faults
     bool    dataRangeHi;        //exceeds VC++ int upper limit
     __int64 dataRangeHiVal;     //value that exceeds VC++ upper limit
     bool    dataRangeLo;        //exceeds VC++ int lower limit
     __int64 dataRangeLoVal;     //value that exceeds VC++ lower limit
-    bool    exceedAbsoluteLimit;          //exceeds 64 bits
+    bool    dataRange;          //overflow where too large/small can't be determined
+    bool    divideByZero;
 
     //-----------------------------------------------------------------------
     // Default Constructor
@@ -86,6 +88,30 @@ public:
     // param:   NA
     // return:  NA
     //-----------------------------------------------------------------------
+    friend SMaP_Number operator-(const SMaP_Number &lhs, const SMaP_Number &rhs);
+
+    //-----------------------------------------------------------------------
+    // FUNC NAME
+    // FUNC DESC
+    // param:   NA
+    // return:  NA
+    //-----------------------------------------------------------------------
+    friend SMaP_Number operator*(const SMaP_Number &lhs, const SMaP_Number &rhs);
+
+    //-----------------------------------------------------------------------
+    // FUNC NAME
+    // FUNC DESC
+    // param:   NA
+    // return:  NA
+    //-----------------------------------------------------------------------
+    friend SMaP_Number operator/(const SMaP_Number &lhs, const SMaP_Number &rhs);
+
+    //-----------------------------------------------------------------------
+    // FUNC NAME
+    // FUNC DESC
+    // param:   NA
+    // return:  NA
+    //-----------------------------------------------------------------------
     friend std::ostream& operator<<(std::ostream &out, const SMaP_Number &num);
 
     //-----------------------------------------------------------------------
@@ -110,14 +136,21 @@ public:
     //-----------------------------------------------------------------------
     bool isInFault() const;
 
+    //-----------------------------------------------------------------------
+    // FUNC NAME
+    // FUNC DESC
+    // param:   NA
+    // return:  NA
+    //-----------------------------------------------------------------------
+    void printErrorReport() const;
+
 private:
-    const __int32   MAX_INT         = LONG_MAX; //"redefine" macro for Visual C++ limits
-    const __int32   MIN_INT         = LONG_MIN; //"redefine" macro for Visual C++ limits
+    const __int32   MAX_VAL         = LONG_MAX; //"redefine" macro for Visual C++ limits
+    const __int32   MIN_VAL         = LONG_MIN; //"redefine" macro for Visual C++ limits
     const __int8    CONVERSION_BASE = 10;
-    const int       SAFE_DATA       = 0;        /* when used in conjuction with another condition,
+    const __int8    SAFE_DATA       = 0;        /* when used in conjuction with another condition,
                                                    it can replace erroneous data*/
 
     __int32 val;
 };
-
 #endif // !__SMAP_OPERAND_h

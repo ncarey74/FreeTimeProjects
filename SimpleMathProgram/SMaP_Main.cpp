@@ -1,47 +1,70 @@
 //###########################################################################
 // Simple Math Program Main
 // A simple console calculator designed for the Windows environment, thus 
-// VC++ data types are used instead of the regular C++ data types
+// VC++ data types are used instead of the regular C++ data types. It can
+// add, subtract, multiply, and divide two integers. There is no support
+// for fractional numbers.
 // 
 // Software Interface Specifications:
-//    IN:         N/A
-//    OUT:        N/A
+//    IN:           None
+//    OUT:          None
+//    IN/OUT:       SMaP_Number Objects. These objects are data abstractions
+//                  for the user entered numbers and the result of the 
+//                  arithmetic operation on those user entered numbers
 //
-// Author:        Carey Norslien
-// Created:       06/05/2015
-// Last Modified: 06/06/2015
+// Author:          Carey Norslien
+// Created:         06/05/2015
+// Last Modified:   06/07/2015
 //###########################################################################
 
 //**LIBRARY INCLUDES*********************************************************
 #include    <iostream>
 #include    <string>
 
+
 //**FILE INCLUDES************************************************************
 #include    "SMaP_Number.h"
+
 
 //**FILE CONSTANTS***********************************************************
 const int   CMD_LENGTH          = 4u;
 
+
 //**CUSTOM TYPES*************************************************************
+typedef unsigned char t_MathType;
+
 enum Errors
 {
     e_ERR_NONE = 0,
     e_ERR_PARSE_CMD,
-    e_ERR_DATA_RANGE,
+    e_ERR_DATA_RANGE
 };
 
-//**FILE DATA****************************************************************
-struct t_userInput
+enum Arithmetic
 {
-    SMaP_Number number1;
-    SMaP_Number number2;
-} g_userData;
+    e_NONE = 0,
+    e_ADDITION,
+    e_SUBTRACTION,
+    e_MULTIPLICATION,
+    e_DIVISION
+};
+
+
+//**FILE DATA****************************************************************
+struct t_appData
+{
+    t_MathType  arithmetic  = e_NONE;
+    SMaP_Number number1     = SMaP_Number();
+    SMaP_Number number2     = SMaP_Number();
+    SMaP_Number result      = SMaP_Number();
+} g_appData;
 
 struct t_argumentErrors
 {
     bool argumentCountHi    = false;
     bool argumentCountLo    = false;
 } g_argumentErrors;
+
 
 //**FUNCTION DECLARATIONS****************************************************
 //---------------------------------------------------------------------------
@@ -78,29 +101,35 @@ int parseData(const char* operand, int& error);
 //---------------------------------------------------------------------------
 int parseCommands(int argc, char* argv[]);
 
-//---------------------------------------------------------------------------
-// FUNC NAME
-// FUNC DESC
-// param:   N/A
-// return:  N/A
-//---------------------------------------------------------------------------
-bool addition(int num1, int num2);
-
 
 //**FUNCTION DEFINITIONS*****************************************************
-
 void main(int argc, char* argv[])
 {
-    SMaP_Number num = SMaP_Number();
     if (parseCommands(argc, argv) == e_ERR_NONE)
     {
-        num = g_userData.number1 + g_userData.number2;
-        if (num.isInFault() == false)
+        if (g_appData.arithmetic == e_ADDITION)
         {
-            std::cout << num << "\n";
+            g_appData.result = g_appData.number1 + g_appData.number2;
+        }
+        else if (g_appData.arithmetic == e_SUBTRACTION)
+        {
+            g_appData.result = g_appData.number1 - g_appData.number2;
+        }
+        else if (g_appData.arithmetic == e_MULTIPLICATION)
+        {
+            g_appData.result = g_appData.number1 * g_appData.number2;
+        }
+        else if (g_appData.arithmetic == e_DIVISION)
+        {
+            g_appData.result = g_appData.number1 / g_appData.number2;
+        }
+
+        if (g_appData.result.isInFault() == false)
+        {
+            std::cout << g_appData.result << "\n";
         }
     }
-    //printErrorReport();
+    printErrorReport();
 }
 
 void printErrorReport()
@@ -113,28 +142,9 @@ void printErrorReport()
     {
         std::cout << "\nThere are too few arguments\n";
     }
-    //if (g_operandsDataBoundError.dataRangeHi)
-    //{
-    //    std::cout << "\nNumber: " << g_operandsDataBoundError.dataRangeHiVal
-    //        << " is too large.\n";
-    //}
-    //if (g_operandsDataBoundError.dataRangeLo)
-    //{
-    //    std::cout << "\nNumber: " << g_operandsDataBoundError.dataRangeLoVal
-    //        << " is too small.\n";
-    //}
-    //if (g_answerDataBoundError.dataRangeHi)
-    //{
-    //    std::cout << "\nSum is too large.\n";
-    //}
-    //if (g_answerDataBoundError.dataRangeLo)
-    //{
-    //    std::cout << "\nSum is too small.\n";
-    //}
-    //if (g_operandsDataBoundError.dataRange)
-    //{
-    //    perror("The following error has occured");
-    //}
+    g_appData.result.printErrorReport();
+    g_appData.number1.printErrorReport();
+    g_appData.number2.printErrorReport();
 }
 
 int parseCommands(int argc, char* argv[])
@@ -155,15 +165,28 @@ int parseCommands(int argc, char* argv[])
     {
         if (strcmp(argv[1], "-add") == 0)
         {
-            g_userData.number1 = SMaP_Number(argv[2]);
-            g_userData.number2 = SMaP_Number(argv[3]);
-            /* see constructor documentation for the justification of the 
-               following IF test. */
-            if ((g_userData.number1).isFalsePositive() || 
-                (g_userData.number2).isFalsePositive())
-            {
-                isReadSuccessful = e_ERR_NONE;
-            }
+            g_appData.arithmetic = e_ADDITION;
+        }
+        else if (strcmp(argv[1], "-subtract") == 0)
+        {
+            g_appData.arithmetic = e_SUBTRACTION;
+        }
+        else if (strcmp(argv[1], "-multiply") == 0)
+        {
+            g_appData.arithmetic = e_MULTIPLICATION;
+        }
+        else if (strcmp(argv[1], "-divide") == 0)
+        {
+            g_appData.arithmetic = e_DIVISION;
+        }
+        g_appData.number1 = SMaP_Number(argv[2]);
+        g_appData.number2 = SMaP_Number(argv[3]);
+        /* see constructor documentation for the justification of the
+        following IF test. */
+        if (!g_appData.number1.isFalsePositive() ||
+            !g_appData.number2.isFalsePositive())
+        {
+            isReadSuccessful = e_ERR_PARSE_CMD;
         }
     }
 
