@@ -36,8 +36,7 @@ typedef unsigned char t_MathType;
 enum Errors
 {
     e_ERR_NONE = 0,
-    e_ERR_PARSE_CMD,
-    e_ERR_DATA_RANGE
+    e_ERR_PARSE_CMD
 };
 
 enum Arithmetic
@@ -122,6 +121,10 @@ void main(int argc, char* argv[])
         else if (g_appData.arithmetic == e_DIVISION)
         {
             g_appData.result = g_appData.number1 / g_appData.number2;
+        }
+        else
+        {
+            ; //defensive
         }
 
         if (g_appData.result.isInFault() == false)

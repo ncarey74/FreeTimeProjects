@@ -1,6 +1,8 @@
 //###########################################################################
 // Simple Math Program Number
-// FILE DESC HERE
+// Data abstraction for the numbers that the SMaP can operate on. These
+// numbers are 32 bit signed integers with some error handling and fault 
+// reporting built in.
 // 
 // Software Interface Specifications:
 //      IN:         N/A
@@ -12,7 +14,7 @@
 //
 // Author:          Carey Norslien
 // Created:         06/06/2015
-// Last Modified:   06/07/2015
+// Last Modified:   06/08/2015
 //###########################################################################
 
 #ifndef     __SMAP_NUMBER_H
@@ -24,17 +26,17 @@
 #include    <string>
 #include    <climits>
 #include    <cerrno>
-#include    <climits>
 
+using std::string;
 
 class SMaP_Number
 {
 public:
     // following variables are faults
     bool    dataRangeHi;        //exceeds VC++ int upper limit
-    __int64 dataRangeHiVal;     //value that exceeds VC++ upper limit
+    string  dataRangeHiVal;     //value that exceeds VC++ upper limit
     bool    dataRangeLo;        //exceeds VC++ int lower limit
-    __int64 dataRangeLoVal;     //value that exceeds VC++ lower limit
+    string dataRangeLoVal;     //value that exceeds VC++ lower limit
     bool    dataRange;          //overflow where too large/small can't be determined
     bool    divideByZero;
 
@@ -49,7 +51,7 @@ public:
     //-----------------------------------------------------------------------
     // 32 Bit Number Constructor
     // Creates a SMaP Number using a 32 bit signed integer.
-    // param:   (IN) inNum      -...
+    // param:   (IN) inNum      -value of the new SMaP Number
     // return:  SMaP Number with value of inNum and no faults.
     //-----------------------------------------------------------------------
     SMaP_Number(__int32 inNum);
@@ -74,41 +76,47 @@ public:
 
     //-----------------------------------------------------------------------
     // Binary Addition Operator Overload
-    // Adds to SMaP Numbers together while recording any faults as a result of
+    // Adds two SMaP Numbers together while recording any faults as a result of
     // the addition.
-    // param:   (IN) lhs        -right hand side
-    //          (IN) rhs        -left hand side
+    // param:   (IN) lhs        -left hand side
+    //          (IN) rhs        -right hand side
     // return:  SMaP Number representing the sum of lhs and rhs with faults
     //-----------------------------------------------------------------------
     friend SMaP_Number operator+(const SMaP_Number &lhs, const SMaP_Number &rhs);
 
     //-----------------------------------------------------------------------
-    // FUNC NAME
-    // FUNC DESC
-    // param:   NA
-    // return:  NA
+    // Binary Subtraction Operator Overload
+    // Subtracts two SMaP numbers together while recording any faults as a 
+    // result of the subtraction.
+    // param:   (IN) lhs        -left hand side
+    //          (IN) rhs        -right hand side
+    // return:  SMaP Number representing the difference of lhs and rhs with faults
     //-----------------------------------------------------------------------
     friend SMaP_Number operator-(const SMaP_Number &lhs, const SMaP_Number &rhs);
 
     //-----------------------------------------------------------------------
-    // FUNC NAME
-    // FUNC DESC
-    // param:   NA
-    // return:  NA
+    // Binary Multiplication Operator Overload
+    // Multiplies two SMaP numbers together while recording any faults as a 
+    // result of the multiplication.
+    // param:   (IN) lhs        -left hand side
+    //          (IN) rhs        -right hand side
+    // return:  SMaP Number representing the product of lhs and rhs with faults
     //-----------------------------------------------------------------------
     friend SMaP_Number operator*(const SMaP_Number &lhs, const SMaP_Number &rhs);
 
     //-----------------------------------------------------------------------
-    // FUNC NAME
-    // FUNC DESC
-    // param:   NA
-    // return:  NA
+    // Binary Division Operator Overload
+    // Divides two SMaP numbers together while recording any faults as a 
+    // result of the multiplication. This uses integer division.
+    // param:   (IN) lhs        -left hand side
+    //          (IN) rhs        -right hand side
+    // return:  SMaP Number representing the quotient of lhs and rhs with faults
     //-----------------------------------------------------------------------
     friend SMaP_Number operator/(const SMaP_Number &lhs, const SMaP_Number &rhs);
 
     //-----------------------------------------------------------------------
-    // FUNC NAME
-    // FUNC DESC
+    // Outstream Operator Overload
+    // Its functionality is obvious.
     // param:   NA
     // return:  NA
     //-----------------------------------------------------------------------
@@ -129,18 +137,23 @@ public:
     bool isFalsePositive() const;
 
     //-----------------------------------------------------------------------
-    // FUNC NAME
-    // FUNC DESC
-    // param:   NA
-    // return:  NA
+    // Is In Fault
+    // Determines if a SMaP number is in fault.
+    // A fault is one or more of the following:
+    //      - Exceeds maximum 32 bit signed number
+    //      - Exceeds minimum 32 bit signed number
+    //      - General overflow
+    //      - Divide by zero
+    // param:   none
+    // return:  true if a SMaP number is in fault, false otherwise.
     //-----------------------------------------------------------------------
     bool isInFault() const;
 
-    //-----------------------------------------------------------------------
-    // FUNC NAME
-    // FUNC DESC
-    // param:   NA
-    // return:  NA
+    //------------------------------- ----------------------------------------
+    // Print Error Report
+    // If the SMaP number is in fault, print all faults.
+    // param:   none
+    // return:  none
     //-----------------------------------------------------------------------
     void printErrorReport() const;
 

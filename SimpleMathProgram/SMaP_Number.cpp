@@ -1,6 +1,8 @@
 //###########################################################################
 // Simple Math Program Number
-// FILE DESC HERE
+// Data abstraction for the numbers that the SMaP can operate on. These
+// numbers are 32 bit signed integers with some error handling and fault 
+// reporting built in.
 // 
 // Software Interface Specifications:
 //      IN:         N/A
@@ -12,7 +14,7 @@
 //
 // Author:          Carey Norslien
 // Created:         06/06/2015
-// Last Modified:   06/07/2015
+// Last Modified:   06/08/2015
 //###########################################################################
 
 //**FILE INCLUDES************************************************************
@@ -23,12 +25,12 @@ const unsigned __int8 BYTE_SIZE = 8;
 const unsigned __int8 VAL_SIZE = sizeof(__int32) * BYTE_SIZE;
 
 //**FREE FUNCTION DECLARATIONS***********************************************
-//-----------------------------------------------------------------------
+//---------------------------------------------------------------------------
 // FUNC NAME
 // FUNC DESC
 // param:   NA
 // return:  NA
-//-----------------------------------------------------------------------
+//---------------------------------------------------------------------------
 unsigned __int8 highestOneBitPosition(const __int32 inNum);
 
 
@@ -36,9 +38,9 @@ unsigned __int8 highestOneBitPosition(const __int32 inNum);
 SMaP_Number::SMaP_Number()
 {
     dataRangeHi         = false;
-    dataRangeHiVal      = 0;
+    dataRangeHiVal      = "N/A";
     dataRangeLo         = false;
-    dataRangeLoVal      = 0;
+    dataRangeLoVal      = "N/A";
     dataRange           = false;
     divideByZero        = false;
     val                 = 0;
@@ -47,9 +49,9 @@ SMaP_Number::SMaP_Number()
 SMaP_Number::SMaP_Number(__int32 inNum)
 {
     dataRangeHi         = false;
-    dataRangeHiVal      = 0;
+    dataRangeHiVal      = "N/A";
     dataRangeLo         = false;
-    dataRangeLoVal      = 0;
+    dataRangeLoVal      = "N/A";
     dataRange           = false;
     divideByZero        = false;
     val                 = inNum;
@@ -58,9 +60,9 @@ SMaP_Number::SMaP_Number(__int32 inNum)
 SMaP_Number::SMaP_Number(char *inText)
 {
     dataRangeHi         = false;
-    dataRangeHiVal      = 0;
+    dataRangeHiVal      = "N/A";
     dataRangeLo         = false;
-    dataRangeLoVal      = 0;
+    dataRangeLoVal      = "N/A";
     dataRange           = false;
     divideByZero        = false;
 
@@ -74,12 +76,12 @@ SMaP_Number::SMaP_Number(char *inText)
     else if (operand > MAX_VAL)
     {
         dataRangeHi = true;
-        dataRangeHiVal = operand;
+        dataRangeHiVal = inText;
     }
     else if (operand < MIN_VAL)
     {
         dataRangeLo = true;
-        dataRangeLoVal = operand;
+        dataRangeLoVal = inText;
     }
 
     if (dataRange || dataRangeHi || dataRangeLo)
@@ -98,7 +100,7 @@ SMaP_Number& SMaP_Number::operator=(const SMaP_Number &rhs)
         dataRangeHiVal      = rhs.dataRangeHiVal;
         dataRangeLo         = rhs.dataRangeLo;
         dataRangeLoVal      = rhs.dataRangeLoVal;
-        dataRange = rhs.dataRange;
+        dataRange           = rhs.dataRange;
         divideByZero        = rhs.divideByZero;
         val                 = rhs.val;
     }
@@ -114,13 +116,13 @@ SMaP_Number operator+(const SMaP_Number &lhs, const SMaP_Number &rhs)
     if ((rhsVal > 0) && (lhsVal > (result.MAX_VAL - rhsVal)))
     {
         result.dataRangeHi = true;
-        result.dataRangeHiVal = result.SAFE_DATA;
+        result.dataRangeHiVal = std::to_string(result.SAFE_DATA);
         result = SMaP_Number(result.SAFE_DATA);
     }
     else if ((rhsVal < 0) && (lhsVal < (result.MIN_VAL - rhsVal)))
     {
         result.dataRangeLo = true;
-        result.dataRangeLoVal = result.SAFE_DATA;
+        result.dataRangeLoVal = std::to_string(result.SAFE_DATA);
         result = SMaP_Number(result.SAFE_DATA);
     }
     else
@@ -141,14 +143,14 @@ SMaP_Number operator-(const SMaP_Number &lhs, const SMaP_Number &rhs)
     if ((lhsVal > 0 && rhsVal < 0) && (lhsVal > result.MAX_VAL + rhsVal))
     {
         result.dataRangeHi = true;
-        result.dataRangeHiVal = result.SAFE_DATA;
+        result.dataRangeHiVal = std::to_string(result.SAFE_DATA);
         result = SMaP_Number(result.SAFE_DATA);
     }
     //TODO: fix logic to find case where result would be too small
     else if ((lhsVal >= 0 && rhsVal < 0) && (lhsVal < result.MAX_VAL + rhsVal))
     {
         result.dataRangeLo = true;
-        result.dataRangeLoVal = result.SAFE_DATA;
+        result.dataRangeLoVal = std::to_string(result.SAFE_DATA);
         result = SMaP_Number(result.SAFE_DATA);
     }
     else
@@ -171,8 +173,7 @@ SMaP_Number operator*(const SMaP_Number &lhs, const SMaP_Number &rhs)
 
     if (lhsBits + rhsBits > VAL_SIZE)
     {
-        result.dataRangeHi = true;
-        result.dataRangeHiVal = result.SAFE_DATA;
+        result.dataRange = true;
     }
     //TODO: get logic to find case where result would be too small
     else
@@ -244,8 +245,8 @@ void SMaP_Number::printErrorReport() const
 {
     /*If a SMaP Number has a fault and is not equal to SAFE_DATA, then
       it was determined that number was too large/small and the integer value
-      was preserved*/
-    if (dataRangeHiVal != SAFE_DATA)
+      was preserved. This SMaP Number should be an operand.*/
+    if (dataRangeHiVal != std::to_string(SAFE_DATA))
     {
         if (dataRangeHi)
         {
@@ -257,7 +258,7 @@ void SMaP_Number::printErrorReport() const
         }
     }
     /*Else the number was too large/small and the integer value could not 
-      be preserved*/
+      be preserved. THis SMaP Number should be a result.*/
     else
     {
         if (dataRangeHi)
@@ -269,6 +270,7 @@ void SMaP_Number::printErrorReport() const
             std::cout << "\nThe result is too small.\n";
         }
     }
+
     if (dataRange)
     {
         std::cout << "\nGeneral overflow error.\n";
