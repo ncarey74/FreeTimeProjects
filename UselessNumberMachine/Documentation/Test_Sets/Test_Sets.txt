@@ -5,3 +5,12 @@ FractionNumbersListTestSet
 RealNumbersListTestSet
 ConstructNumbersListTestSet
 
+TestUselessMath
+---------------
+EmptyNumbersListTestSet
+SumTestSet
+DifferenceTestSet
+ProductTestSet
+QuotientTestSet
+
+

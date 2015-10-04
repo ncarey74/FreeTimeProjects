@@ -1,0 +1,18 @@
+#############################################################################
+# Simple Math Program - Python Main
+# A simple console calculator written in Python. It can add, subtract,
+# multiply, and divide two integers. There is no support for fractional numbers.
+#
+# Software Interface Specifications:
+#    IN:           None
+#    OUT:          None
+#    IN/OUT:       SMaP_Number Objects. These objects are data abstractions
+#                  for the user entered numbers and the result of the
+#                  arithmetic operation on those user entered numbers
+#
+# Author:          Carey Norslien
+# Created:         10/02/2015
+# Last Modified:   10/03/2015
+#############################################################################
+
+
