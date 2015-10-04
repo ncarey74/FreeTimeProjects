@@ -1,0 +1,179 @@
+#!/usr/bin/env python
+""" Data abstraction for the numbers that the SMaP can operate on.
+
+SMaP assumes a 64-bit system.
+"""
+import sys
+
+__author__ = 'Carey Norslien'
+
+MAX_VAL = sys.maxsize
+MIN_VAL = -sys.maxsize - 1
+SAFE_DATA = 0
+BYTE_SIZE = 8
+NUM_SIZE = 4
+VAL_SIZE = NUM_SIZE * BYTE_SIZE
+
+
+class SMaPNumber:
+    """ Data abstraction for the numbers that the SMaP can operate on. """
+    dataRangeHi = False
+    dataRangeHiVal = "N/A"
+    dataRangeLo = False
+    dataRangeLoVal = "N/A"
+    dataRange = False
+    divideByZero = False
+    __val = 0
+
+    def __init__(self, in_num=None, in_text=None):
+        """
+        :param in_num: value of the new SMaP Number
+        :param in_text: single argument from the command line
+        :return: SMaP Number with the appropriate value and any faults found
+        """
+        if (in_num is None) and (in_text is None):
+            self.init_default()
+        elif (in_num is not None) and (in_text is None):
+            self.init_num(in_num)
+        elif (in_num is None) and (in_text is not None):
+            self.init_text(in_text)
+
+    def init_default(self):
+        """ Creates a default SMaP Number.
+
+        :return: SMaP Number with value of 0 and no faults.
+        """
+        self.dataRangeHi = False
+        self.dataRangeHiVal = "N/A"
+        self.dataRangeLo = False
+        self.dataRangeLoVal = "N/A"
+        self.dataRange = False
+        self.divideByZero = False
+        self.__val = 0
+
+    def init_num(self, in_num):
+        """ Creates a SMaP Number using a 32 bit signed integer.
+
+        :param in_num: value of the new SMaP Number
+        :return: SMaP Number with value of in_num and no faults.
+        """
+        self.dataRangeHi = False
+        self.dataRangeHiVal = "N/A"
+        self.dataRangeLo = False
+        self.dataRangeLoVal = "N/A"
+        self.dataRange = False
+        self.divideByZero = False
+        self.__val = in_num
+
+    def init_text(self, in_text):
+        """ Creates a SMaP Number from command line arguments.
+
+        It is possible that the user input invalid information, thus human error is captured by
+        setting the appropriate faults.
+
+        :param in_text:
+        :return: SMaP Number representing in_text and any faults from parsing
+        """
+        self.dataRangeHi = False
+        self.dataRangeHiVal = "N/A"
+        self.dataRangeLo = False
+        self.dataRangeLoVal = "N/A"
+        self.dataRange = False
+        self.divideByZero = False
+
+        operand = int(in_text)
+
+        if (operand > MAX_VAL) and (operand > MIN_VAL):
+            self.dataRange = True
+        elif operand > MAX_VAL:
+            self.dataRangeHi = True
+            self.dataRangeHiVal = in_text
+        elif operand > MIN_VAL:
+            self.dataRangeLo = True
+            self.dataRangeLoVal = in_text
+
+        if self.dataRange or self.dataRangeHi or self.dataRangeLo:
+            operand = SAFE_DATA
+
+        self.__val = operand
+
+    def __add__(self, other):
+        """ Adds two SMaP Numbers together while recording any faults as a result of the addition.
+
+        :param other: right hand side of the equation
+        :return: SMaP Number representing the sum of self and other with faults
+        """
+        result = SMaPNumber()
+        lhs_val = self.__val
+        rhs_val = other.__val
+
+        if (rhs_val > 0) and (lhs_val > MAX_VAL - rhs_val):
+            result.dataRangeHi = True
+            result.dataRangeHiVal = str(SAFE_DATA)
+            result = SMaPNumber(SAFE_DATA)
+        elif (rhs_val < 0) and (lhs_val < MIN_VAL - rhs_val):
+            result.dataRangeLo = True
+            result.dataRangeLoVal = str(SAFE_DATA)
+            result = SMaPNumber(SAFE_DATA)
+        else:
+            result = SMaPNumber(lhs_val + rhs_val)
+
+        return result
+
+    def __sub__(self, other):
+        """ Subtracts two SMaP numbers together while recording any faults as a result of the subtraction.
+
+        :param other: right hand side of the equation
+        :return: SMaP Number representing the difference of self and other with faults
+        """
+        result = SMaPNumber()
+        lhs_val = self.__val
+        rhs_val = other.__val
+
+        # preconditional overflow test
+        if (lhs_val > 0 and rhs_val < 0) and (lhs_val > MAX_VAL + rhs_val):
+            result.dataRangeHi = True
+            result.dataRangeHiVal = str(SAFE_DATA)
+            result = SMaPNumber(SAFE_DATA)
+        # TODO fix logic to find case where result would be too small
+        elif (lhs_val >= 0 and rhs_val < 0) and (lhs_val < MAX_VAL + rhs_val):
+            result.dataRangeLo = True
+            result.dataRangeLoVal = str(SAFE_DATA)
+            result = SMaPNumber(SAFE_DATA)
+        else:
+            result = SMaPNumber(lhs_val - rhs_val)
+
+        return result
+
+    def __mul__(self, other):
+        result = SMaPNumber()
+        lhs_val = self.__val
+        rhs_val = other.__val
+
+        # preconditional overflow test
+        lhs_bits = highest_one_bit_position(lhs_val)
+        rhs_bits = highest_one_bit_position(rhs_val)
+
+        if (lhs_bits + rhs_bits) > VAL_SIZE:
+            result.dataRange = True
+        # TODO get logic to find case where result would be too small
+        else:
+            result = SMaPNumber(lhs_val * rhs_val)
+
+        return result
+
+
+def highest_one_bit_position(in_num):
+    """
+
+    :param in_num: NA
+    :return: NA
+    """
+    bits = 0
+    bit_shift = in_num
+
+    while bit_shift != 0:
+        bits += 1
+        bit_shift >>= 1
+
+    return bits
