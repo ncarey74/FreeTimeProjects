@@ -1,0 +1,11 @@
+Car actions:
+1) stop
+2) start
+3) accelerate
+4) turn left
+5) turn right
+6) deccelerate
+
+Part Types:
+Engine = 001
+Wheel = 002
